@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <div class="max-w-screen-xl mx-auto">
+      <header class="flex justify-between items-center bg-green-400 p-3 mb-10">
+        <div class="flex justify-between items-center">
+          <a href="./Home.html" class="text-white inline-block mr-1"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m21 7.5-9-5.25L3 7.5m18 0-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"
+              />
+            </svg>
+          </a>
+          <a href="./Home.html" class="text-white inline-block"
+            >Team Project Workshop</a
+          >
+        </div>
+
+        <ul class="flex">
+          <li>
+            <div class="relative inline-block">
+              <button
+                class="text-white py-1 px-3 border rounded-xl mr-2 dropDownTeam mb-2"
+              >
+                Команда
+              </button>
+              <div class="absolute z-1 hidden hiddenTeam">
+                <a
+                  class="text-white py-1 px-3 border rounded-xl mr-2 mb-2 inline-block bg-green-400"
+                  href="#"
+                  >Поиск</a
+                >
+                <a
+                  class="text-white py-1 px-3 border rounded-xl mr-2 inline-block bg-green-400"
+                  href="#"
+                  >Создать</a
+                >
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="relative inline-block">
+              <button
+                class="text-white py-1 px-3 border rounded-xl dropDownMember mb-2"
+              >
+                Участник
+              </button>
+              <div class="absolute z-1 hidden hiddenMember">
+                <a
+                  class="text-white py-1 px-3 border rounded-xl mr-2 mb-2 inline-block bg-green-400"
+                  href="#"
+                  >Поиск</a
+                >
+                <a
+                  class="text-white py-1 px-3 border rounded-xl mr-2 inline-block bg-green-400"
+                  href="#"
+                  >Создать</a
+                >
+              </div>
+            </div>
+          </li>
+        </ul>
+        <ul class="flex">
+          <li>
+            <a href="#" class="text-white py-1 px-3 border rounded-xl mr-2">
+              Войти
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-white py-1 px-3 border rounded-xl mr-2">
+              Выйти
+            </a>
+          </li>
+          <li>
+            <a
+              href="./Registration.html"
+              class="text-white py-1 px-3 border rounded-xl mr-2"
+            >
+              Регистрация
+            </a>
+          </li>
+        </ul>
+      </header>
+      <main>
+        <form class="w-5/6 mx-auto mb-8" action="#" method="post">
+          <h1 class="font-semibold text-4xl mb-4">Регистрация</h1>
+          <label class="text-xl" for="POST-name">Имя пользователя</label>
+          <input
+            class="bg-green-100 w-full p-1 rounded-xl mb-4"
+            id="POST-name"
+            type="text"
+            name="name"
+          />
+          <label class="text-xl" for="POST-email">Электронная почта</label>
+          <input
+            class="bg-green-100 w-full p-1 rounded-xl mb-4"
+            id="POST-email"
+            type="email"
+            name="email"
+          />
+          <label class="text-xl" for="POST-password">Пароль</label>
+          <input
+            class="bg-green-100 w-full p-1 rounded-xl mb-4"
+            id="POST-password"
+            type="password"
+            name="password"
+          />
+          <label class="text-xl" for="POST-password-repeat"
+            >Подтвердите пароль</label
+          >
+          <input
+            class="bg-green-100 w-full mb-8 p-1 rounded-xl"
+            id="POST-password-repeat"
+            type="password"
+            name="password-repeat"
+          />
+          <button
+            class="text-white text-base py-2 px-3 border rounded-xl mr-2 bg-green-500"
+          >
+            Зарегистрироваться
+          </button>
+        </form>
+
+        <p class="w-5/6 mx-auto">
+          <a
+            class="inline-block text-white text-xs py-1 px-2 border rounded-xl mr-2 bg-green-300"
+            >Войти</a
+          >
+        </p>
+      </main>
+    </div>
+    <script src="../script.js"></script>
+  </body>
+</html>
