@@ -10,14 +10,14 @@
     <div class="max-w-screen-xl mx-auto">
       <header class="flex justify-between items-center bg-green-400 p-3 mb-10">
         <div class="flex justify-between items-center">
-          <a href="./Home.html" class="text-white inline-block mr-1"
+          <a href="../Home.html" class="text-white"
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="w-6 h-6"
+              class="w-6 h-6 inline-block"
             >
               <path
                 stroke-linecap="round"
@@ -25,30 +25,28 @@
                 d="m21 7.5-9-5.25L3 7.5m18 0-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"
               />
             </svg>
+            Team Project Workshop
           </a>
-          <a href="./Home.html" class="text-white inline-block"
-            >Team Project Workshop</a
-          >
         </div>
 
         <ul class="flex">
           <li>
             <div class="relative inline-block">
               <button
-                class="text-white py-1 px-3 border rounded-xl mr-2 dropDownTeam mb-2"
+                class="text-white py-1 px-3 border rounded-xl mr-2 mb-2 dropDownTeam"
               >
                 Команда
               </button>
-              <div class="absolute z-1 hidden hiddenTeam">
+              <div class="absolute z-1 text-center hidden hiddenTeam mr-2">
                 <a
-                  class="text-white py-1 px-3 border rounded-xl mr-2 mb-2 inline-block bg-green-400"
-                  href="#"
-                  >Поиск</a
+                  class="text-white text-center py-1 px-3 border rounded-xl mb-2 inline-block bg-green-400"
+                  href="../Team/Create-team.html"
+                  >Создать</a
                 >
                 <a
-                  class="text-white py-1 px-3 border rounded-xl mr-2 inline-block bg-green-400"
-                  href="#"
-                  >Создать</a
+                  class="text-white text-center py-1 px-3 border rounded-xl inline-block bg-green-400"
+                  href="../Feed/Team-feed.html"
+                  >Лента команд</a
                 >
               </div>
             </div>
@@ -56,25 +54,26 @@
           <li>
             <div class="relative inline-block">
               <button
-                class="text-white py-1 px-3 border rounded-xl dropDownMember mb-2"
+                class="text-white py-1 px-3 border rounded-xl mb-2 dropDownMember"
               >
-                Участник
+                Соискатель
               </button>
-              <div class="absolute z-1 hidden hiddenMember">
+              <div class="absolute z-1 text-center hidden hiddenMember">
                 <a
-                  class="text-white py-1 px-3 border rounded-xl mr-2 mb-2 inline-block bg-green-400"
-                  href="#"
-                  >Поиск</a
+                  class="text-white text-center py-1 px-3 border rounded-xl mb-2 inline-block bg-green-400"
+                  href="../Seeker/Create-seeker.html"
+                  >Создать</a
                 >
                 <a
-                  class="text-white py-1 px-3 border rounded-xl mr-2 inline-block bg-green-400"
-                  href="#"
-                  >Создать</a
+                  class="text-white text-center py-1 px-3 border rounded-xl inline-block bg-green-400"
+                  href="../Feed/Seeker-feed.html"
+                  >Лента соискатлей</a
                 >
               </div>
             </div>
           </li>
         </ul>
+
         <ul class="flex">
           <li>
             <a href="#" class="text-white py-1 px-3 border rounded-xl mr-2">
@@ -82,7 +81,10 @@
             </a>
           </li>
           <li>
-            <a href="#" class="text-white py-1 px-3 border rounded-xl mr-2">
+            <a
+              href="./Logout.html"
+              class="text-white py-1 px-3 border rounded-xl mr-2"
+            >
               Выйти
             </a>
           </li>
@@ -115,7 +117,7 @@
             name="password"
           />
           <button
-            class="text-white text-base py-2 px-3 border rounded-xl mr-2 bg-green-500"
+            class="text-white text-base py-1 px-3 border rounded-xl mr-2 bg-green-500"
           >
             Войти
           </button>
@@ -125,12 +127,14 @@
           <ul class="flex">
             <li class="mb-2">
               <a
+                href="./Registration.html"
                 class="inline-block text-white text-xs py-1 px-2 border rounded-xl mr-2 bg-green-300"
                 >Регистрация</a
               >
             </li>
             <li>
               <a
+                href="#"
                 class="inline-block text-white text-xs py-1 px-2 border rounded-xl mr-2 bg-green-300"
                 >Забыли пароль?</a
               >
