@@ -1,12 +1,12 @@
 from email.message import EmailMessage
 import ssl
 import smtplib
-from .. import secret
+from .secret import PASSWORD_EMAIL
 
 def sendmail(to, body):
     fromMail = 'teamprojectworkshop@mail.ru'
     port = 465
-    password = secret.PASSWORD_EMAIL
+    password = PASSWORD_EMAIL
 
     message = EmailMessage()
     message['From'] = fromMail

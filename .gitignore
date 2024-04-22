@@ -1,4 +1,5 @@
 # Вспомогательные файлы
 *.log*
 node_modules/
-teampw/secret.py
+teampw/start/secret.py
+teampw/teampw/secret.py

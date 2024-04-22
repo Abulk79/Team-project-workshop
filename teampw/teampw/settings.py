@@ -1,9 +1,9 @@
 from pathlib import Path
-from .. import secret
+from .secret import SECRET_KEY
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = secret.SECRET_KEY
+SECRET_KEY = SECRET_KEY
 
 DEBUG = True
 
