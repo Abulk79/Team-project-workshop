@@ -37,9 +37,11 @@ def user(req, name):
 
     if req.user.is_authenticated:
         teamguest = models.Team.objects.filter(owner=req.user).first()
+        userMembership = models.TeamMembership.objects.filter(user=user).first()
         if teamguest:
             membernames = models.TeamMembership.objects.filter(team=teamguest).values_list('user', flat=True)
             context['canInvite'] = name not in membernames
+            context['canKick'] = name in membernames
 
     return render(req, 'user.html', context)
 
