@@ -1,0 +1,50 @@
+TEMPLATE_DOCUMENTATION
+
+home.html
+path: /
+context: {
+    'user': (объект текущего пользователя, None если не зашел в аккаунт)
+    'team': (объект команды, в которой состоит пользователь, None если нет команды)
+}
+
+login.html
+path: /login
+context: -
+
+registeraccount.html
+path: /registeraccount/
+context: -
+
+registerteam.html
+path: /registerteam/
+context: -
+
+seekers.html
+path: /seekers/
+context: {
+    'ads': (список из анкет пользователей. Отсюда можно получить объект аккаунта)
+}
+
+seekteam.html
+path: /seekteam/
+context: {
+    'ads': (список из анкет команд. Отсюда можно получить объект команды)
+}
+
+team.html
+path: /teams/<name>/
+context: {
+    'members': (список из имен участников команды. НЕ объекты самих пользователей, только имена)
+    'owner': (Является ли человек, просматривающий страницу владельцем этой команды? True False)
+    'team': (объект текущей команды)
+    'ad': (объект анкеты команды, если имеется. Иначе None)
+}
+
+user.html
+path: /users/<name>/
+context: {
+    'user': (объект пользователя)
+    'team': (объект команды, в которой состоит данный пользователь. Иначе None)
+    'ad': (объект анкеты пользователя, если имеется. Иначе None)
+    'owner': (ялвяется ли текущий пользователь владельцем этой страницы? True False)
+}

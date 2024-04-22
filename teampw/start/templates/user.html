@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Пользователь: {{ user.name }}</h1>
+    {% if canInvite %}
+    <form action='/api/invite/{{ user.name }}' method='POST'>
+        {% csrf_token %}
+        <input type='submit' value='Пригласить'>
+    </form>
+    {% elif canKick %}
+    <form action='/api/kick/{{ user.name }}' method='POST'>
+        {% csrf_token %}
+        <input type='submit' value='Исключить'>
+    </form>
+    {% endif %}
+    Команда: {% if team %}<a href='/teams/{{ team.name }}/'>{{ team.name }}{% else %}Отсутствует{% endif %}</a>
+    <form action='/api/changeuserinfo' method='POST'>
+        {% csrf_token %}
+        информация: <input value='{{ user.info }}' name='info'>
+        контакты: <input value='{{ user.contacts }}' name='contacts'>
+        <br>
+        Ищите ли команду?: <input type='checkbox' name='seeks' {% if ad %}checked{% endif %}>
+        В каком направлении хотите развиваться?: <input value='{% if ad %}{{ ad.project }}{% endif %}' name='project'>
+        Кем хотите быть?: <input value='{% if ad %}{{ ad.role }}{% endif %}' name='role'>
+        Ваши навыки: <input value='{% if ad %}{{ ad.skills }}{% endif %}' name='skills'>
+        <input type='submit' value='сохранить'>
+    </form>
+    Уведомления:
+    {% for invite in invites %}
+        <a href='/users/{{ invite.sender.name }}/'>{{ invite.sender.name }}</a> Пригласил вас в команду: <a href='/teams/{{ invite.team.name }}'>{{ invite.team.name }}</a>
+        <form action='/api/request/{{ invite.sender.name }}' method='POST'>
+            {% csrf_token %}
+            <input type='submit' value='Принять'>
+        </form>
+        <form action='/api/declineinvite/{{ invite.sender.name }}' method='POST'>
+            {% csrf_token %}
+            <input type='submit' value='Отклонить'>
+        </form>
+    {% endfor %}
+    {% for request in requests %}
+        <a href='/users/{{ request.sender.name }}/'>{{ request.sender.name }}</a> Хочет в вашу команду
+        <form action='/api/invite/{{ request.sender.name }}' method='POST'>
+            {% csrf_token %}
+            <input type='submit' value='Принять'>
+        </form>
+        <form action='/api/declinerequest/{{ request.sender.name }}' method='POST'>
+            {% csrf_token %}
+            <input type='submit' value='Отклонить'>
+        </form>
+    {% endfor %}
+    <a href='/api/logout'>Выйти</a>
+</body>
+</html>

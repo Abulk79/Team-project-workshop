@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="/registeraccount/">Регистрация аккаунта</a>
+    <a href="/registerteam/">Регистрация команды</a>
+    <a href="/login/">Вход в аккаунт</a>
+    <a href='/seekers/'>Найти сокомандников</a>
+    <a href='/seekteam/'>Найти команду</a>
+    {% if user %}<a href='/users/{{ user.name }}'>{{ user.name }}</a>{% endif %}
+    <img src='{% static "cat_hacker.jpg" %}'>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Команда: {{ team.name }}</h1>
+    Владелец:<a href='/users/{{ team.owner.name }}/'>{{ team.owner.name }}</a>
+    <br>Участники:
+    {% for member in members %}
+        {% if team.owner.name != member %}
+            <a href='/users/{{ member }}/'>{{ member }}</a>
+        {% endif %}
+    {% endfor %}
+    <form action='/api/changeteaminfo' method='POST'>
+        {% csrf_token %}
+        Информация: <input value='{{ team.info }}' name='info'>
+        <br>
+        Ищет ли участников?: <input type='checkbox' name='seek' {% if ad %}checked{% endif %}>
+        В каком направлении команда хочет развиваться?:<input value='{% if ad %}{{ ad.project }}{% endif %}' name='project'>
+        Какие роли ищет команда?: <input value='{% if ad %}{{ ad.role }}{% endif %}' name='role'>
+        Что должны уметь будущие участники?: <input value='{% if ad %}{{ ad.skills }}{% endif %}' name='skills'>
+        <input type='submit' value='сохранить'>
+    </form>
+    <form action='/api/request/{{ team.owner.name }}' method='POST'>
+        {% csrf_token %}
+        <input type='submit' value='Отправить заявку'>
+    </form>
+    <form action='/api/leave' method='POST'>
+        {% csrf_token %}
+        <input type='submit' value='Выйти из команды'>
+    </form>
+</body>
+</html>

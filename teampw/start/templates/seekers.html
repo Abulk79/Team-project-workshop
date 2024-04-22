@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% for ad in ads %}
+        <a href='/users/{{ ad.user }}'>{{ ad.user }}</a>
+        Интересуемое направление:<h3>{{ ad.project }}</h3>
+        Интересуемая роль:<h3>{{ ad.role }}</h3>
+        Скиллы:<h3>{{ ad.skills }}</h3>
+    {% endfor %}
+</body>
+</html>
