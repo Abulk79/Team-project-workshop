@@ -40,8 +40,8 @@ def user(req, name):
         userMembership = models.TeamMembership.objects.filter(user=user).first()
         if teamguest:
             membernames = models.TeamMembership.objects.filter(team=teamguest).values_list('user', flat=True)
-            context['canInvite'] = name not in membernames
-            context['canKick'] = name in membernames
+            context['canInvite'] = not userMembership
+            context['canKick'] = name in membernames and not req.user.name == user.name
 
     return render(req, 'user.html', context)
 
