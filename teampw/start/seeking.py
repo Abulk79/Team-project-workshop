@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from . import models
 
-def seekteam(req):
+def seek_team(req):
     context = {}
 
     ads = models.TeamAd.objects.all()
