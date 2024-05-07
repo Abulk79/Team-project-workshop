@@ -1,16 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form action='/api/login' method='POST'>
-        {% csrf_token %}
-        Имя аккаунта: <input name='name'>
-        Пароль: <input name='password'>
-        <input type='submit' value='Войти'>
-    </form>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/css/styles.css" />
+    <title>Вход в аккаунт</title>
+  </head>
+  <body class="bg-main-color">
+    <main class="login">
+      <div class="container">
+        <form class="mt-5" action="/api/login" method="POST">
+          <h1 class="text-center m-3 text-white">Вход в аккаунт</h1>
+
+          <div class="mb-3 w-75 mx-auto">
+            <label for="exampleInputName" class="form-label text-white">Имя</label>
+            <input type="text" class="form-control" id="exampleInputName" name="name" />
+          </div>
+
+          <div class="mb-5 w-75 mx-auto">
+            <label for="exampleInputPassword" class="form-label text-white">Пароль</label>
+            <input type="password" class="form-control" id="exampleInputPassword" name="password" />
+          </div>
+
+          <button
+            type="submit"
+            class="btn btn-lg btn-light d-block text-main-color rounded-3 mx-auto"
+          >
+            Войти
+          </button>
+        </form>
+      </div>
+    </main>
+  </body>
+
+  <script type="module" src="../static/js/main.js"></script>
 </html>

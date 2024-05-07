@@ -1,16 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form action='/api/registerteam' method='POST'>
-        {% csrf_token %}
-        Название команды: <input name='name'>
-        Дополнительная информация: <input name='info'>
-        <input type='submit' value='Далее'>
-    </form>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/css/styles.css" />
+    <title>Создание команды</title>
+  </head>
+  <body class="bg-main-color">
+    <main class="register-team">
+      <div class="container">
+        <form class="mt-5" action="/api/registerteam" method="POST">
+          <h1 class="text-center m-3 text-white">Создание команды</h1>
+
+          <div class="mb-4 w-75 mx-auto">
+            <label for="exampleInputName" class="form-label text-white">Название</label>
+            <input type="text" class="form-control" id="exampleInputName" name="name" />
+          </div>
+
+          <div class="mb-4 w-75 mx-auto">
+            <label for="exampleFormControlTextarea" class="form-label text-white"
+              >Дополнительная информация</label
+            >
+            <textarea
+              class="form-control"
+              id="exampleFormControlTextarea"
+              rows="3"
+              name="info"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="btn btn-lg btn-light d-block text-main-color rounded-3 mx-auto"
+          >
+            Далее
+          </button>
+        </form>
+      </div>
+    </main>
+  </body>
 </html>
