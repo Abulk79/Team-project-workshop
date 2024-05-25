@@ -57,7 +57,7 @@ def verify_email_api(req):
     http://localhost:8000/api/registeraccount?name={name}&code={code}
     """.format(name=name, code=code)
 
-    #sendmail(email, reference)
+    sendmail(email, reference)
 
     return HttpResponse('Письмо отправлено на почту для подтверждения аккаунта')
 
