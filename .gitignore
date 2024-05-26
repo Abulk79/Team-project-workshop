@@ -1,3 +1,4 @@
-teampw/start/static/node_modules
-teampw/start/secret.py
-teampw/teampw/secret.py
+static/node_modules
+src/start/secret.py
+src/teampw/secret.py
+src/start/static/node_modules
