@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/styles.css" />
+    <title>Профиль команды</title>
+  </head>
+  <body>
+    <header class="container-fluid bg-main-color">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand text-white" href="/">Team Project Workshop</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Переключатель навигации"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link text-white" href="/seekteam/">Команды</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="/seekers/">Сокомандники</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link text-white dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Профиль
+                </a>
+                <ul class="dropdown-menu border-main-color">
+                  <li>
+                    <a class="dropdown-item text-main-color" href="/user">Профиль пользователя</a>
+                  </li>
+                  <li><hr class="dropdown-divider text-main-color" /></li>
+                  <li>
+                    <a class="dropdown-item text-main-color" href="/team">Профиль команды</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link text-white dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Авторизация
+                </a>
+                <ul class="dropdown-menu border-main-color">
+                  <li><a class="dropdown-item text-main-color" href="/login/">Вход</a></li>
+                  <li><hr class="dropdown-divider text-main-color" /></li>
+                  <li>
+                    <a class="dropdown-item text-main-color" href="/registeraccount/"
+                      >Регистрация</a
+                    >
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="team">
+      <div class="container-fluid">
+        <div class="row pt-5">
+          <div class="card mb-3 mx-auto border-main-color" style="max-width: 70%">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img
+                  src="/static/no-image.jpg"
+                  class="img-fluid card-img-top"
+                  alt="Аватарка команды"
+                />
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h4 class="card-title text-main-color" style="font-size: 2rem">
+                    Название команды {{ team.name }}
+                  </h4>
+                  <p class="card-text text-main-color" style="font-size: 1.4rem">
+                    <span class="fw-semibold">Владелец:</span>
+                    <a class="text-decoration-none text-reset" href="/users/{{ team.owner.name }}/"
+                      >{{ team.owner.name }}</a
+                    >
+                    <br />
+                    <span class="fw-semibold">Участники:</span>
+                  </p>
+                  {% for member in members %} {% if team.owner.name != member %}
+                  <ul class="list-unstyled">
+                    <li>
+                      <a class="text-decoration-none text-reset" href="/users/{{ member }}/"
+                        >{{ member }}</a
+                      >
+                    </li>
+                  </ul>
+                  {% endif %} {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-5">
+          <form class="mt-5" action="/api/changeteaminfo" method="POST">
+            <h3 class="text-center m-5 text-main-color" style="font-size: 2rem">
+              Редактирование профиля команды
+            </h3>
+
+            <div class="mb-5 w-75 mx-auto">
+              <label
+                for="exampleInpuInfo"
+                class="form-label text-main-color"
+                style="font-size: 1.8rem"
+                >Информация о команде</label
+              >
+              <input
+                type="text"
+                class="form-control p-3"
+                id="exampleInpuInfo"
+                value="{{ team.info }}"
+                name="info"
+              />
+            </div>
+
+              <button
+              type="submit"
+              class="btn btn-lg bg-main-color text-white d-block tex mx-auto rounded-3 mb-2"
+            >
+              Сохранить
+            </button>
+          </form>
+
+          Создание анкеты команды
+          <form action="/api/createteamad" method="post">
+            <div class="mb-5 w-75 mx-auto">
+              <label
+                for="exampleInputDirection"
+                class="form-label text-main-color"
+                style="font-size: 1.8rem"
+                >В каком направлении команда хочет развиваться</label
+              >
+              <input
+                type="text"
+                class="form-control p-3"
+                id="exampleInputDirection"
+                value="{% if ad %}{{ ad.project }}{% endif %}"
+                name="project"
+              />
+            </div>
+
+            <div class="mb-5 w-75 mx-auto">
+              <label
+                for="exampleInputRole"
+                class="form-label text-main-color"
+                style="font-size: 1.8rem"
+                >Какие роли ищет команда</label
+              >
+              <input
+                type="text"
+                class="form-control p-3"
+                id="exampleInputRole"
+                name="role"
+                value="{% if ad %}{{ ad.role }}{% endif %}"
+              />
+            </div>
+
+            <div class="mb-5 w-75 mx-auto">
+              <label
+                for="exampleInputSkills"
+                class="form-label text-main-color"
+                style="font-size: 1.8rem"
+                >Что должны уметь будущие участники</label
+              >
+              <input
+                type="text"
+                class="form-control p-3"
+                id="exampleInputSkills"
+                value="{% if ad %}{{ ad.skills }}{% endif %}"
+                name="skills"
+              />
+            </div>
+            <input type="submit" value="сохранить">
+            </form>
+
+            Удалить анкету команды
+            <form action="/api/deleteteamad" method="post">
+              <input type="submit" value="Удалить">
+            </form>
+
+        </div>
+
+        <div class="row justify-content-around">
+          <div class="col-2">
+            <form action="/api/request/{{ team.owner.name }}" method="POST">
+              <button type="submit" class="btn btn-success d-block text-white rounded-3">
+                Отправить заявку
+              </button>
+            </form>
+          </div>
+          <div class="col-2">
+            <form action="/api/leave" method="POST">
+              <button type="submit" class="btn btn-danger d-block text-white rounded-3">
+                Выйти из команды
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer
+      class="container-fluid bg-main-color d-flex flex-wrap justify-content-between align-items-center py-3 mt-4 sticky-bottom"
+    >
+      <p class="col-md-4 mb-0 text-white">&copy; Website production</p>
+
+      <ul class="nav col-md-4 justify-content-end">
+        <li class="nav-item">
+          <a href="#" class="nav-link px-2 text-white">Главная</a>
+        </li>
+        <li class="nav-item">
+          <a href="/seekteam/" class="nav-link px-2 text-white">Команды</a>
+        </li>
+        <li class="nav-item">
+          <a href="/seekers/" class="nav-link px-2 text-white">Сокомандники</a>
+        </li>
+      </ul>
+    </footer>
+
+    <script type="module" src="/static/js/main.js"></script>
+  </body>
+</html>
