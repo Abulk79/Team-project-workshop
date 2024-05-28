@@ -10,7 +10,7 @@ def team(req, name):
 
     context['members'] = members
     context['owner'] = req.user.is_authenticated and req.user.name == team.owner.name
-    context['isOwner'] = req.user.is_authenticated and req.user.name in members
+    context['isMember'] = req.user.is_authenticated and req.user.name in members
     context['team'] = team
     context['ad'] = ad
 
