@@ -58,7 +58,6 @@
                 </ul>
                 {% endif %}
               </li>
-              {% if user %} {% else %}
               <li class="nav-item dropdown">
                 <a
                   class="nav-link text-white dropdown-toggle"
@@ -67,10 +66,24 @@
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Авторизация
+                  Аккаунт
                 </a>
                 <ul class="dropdown-menu border-main-color">
-                  <li><a class="dropdown-item text-main-color" href="/login/">Вход</a></li>
+                  {% if user %}
+                  <li>
+                    <form action="/api/logout" method="get">
+                      <input
+                        type="submit"
+                        class="dropdown-item text-main-color"
+                        href="/logout/"
+                        value="Выход из аккаунта"
+                      />
+                    </form>
+                  </li>
+                  {% else %}
+                  <li>
+                    <a class="dropdown-item text-main-color" href="/login/">Вход в аккаунт</a>
+                  </li>
                   <li><hr class="dropdown-divider text-main-color" /></li>
                   <li>
                     <a class="dropdown-item text-main-color" href="/registeraccount/"
@@ -127,9 +140,11 @@
 
         <div class="row mb-5">
           <form class="mt-5" action="/api/changeuserinfo" method="POST">
+            {% if owner %}
             <h3 class="text-center m-5 text-main-color" style="font-size: 2rem">
               Редактирование профиля пользователя
             </h3>
+            {% endif %}
 
             <div class="mb-3 w-75 mx-auto">
               <label
@@ -138,6 +153,7 @@
                 style="font-size: 1.8rem"
                 >Информация о пользователе</label
               >
+              {% if owner %}
               <input
                 type="text"
                 class="form-control"
@@ -145,6 +161,9 @@
                 value="{{ user.info }}"
                 name="info"
               />
+              {% else %}
+              <p>{{ user.info }}</p>
+              {% endif %}
             </div>
 
             <div class="mb-3 w-75 mx-auto">
@@ -154,6 +173,7 @@
                 style="font-size: 1.8rem"
                 >Контакты</label
               >
+              {% if owner %}
               <input
                 type="text"
                 class="form-control"
@@ -161,20 +181,31 @@
                 value="{{ user.contacts }}"
                 name="contacts"
               />
+              {% else %}
+              <p>{{ user.contacts }}</p>
+              {% endif %}
             </div>
 
+            {% if owner %}
             <button
               type="submit"
               class="btn btn-lg bg-main-color text-white d-block tex mx-auto rounded-3 mb-2"
             >
               Сохранить
             </button>
+            {% endif %}
           </form>
 
           <form class="mt-5" action="/api/createuserad" method="POST">
+            {% if owner %}
             <h3 class="text-center m-5 text-main-color" style="font-size: 2rem">
               Создание анкеты пользователя
             </h3>
+            {% else %}
+            <h3 class="text-center m-5 text-main-color" style="font-size: 2rem">
+              Анкета пользователя
+            </h3>
+            {% endif %}
             <div class="mb-3 w-75 mx-auto">
               <label
                 for="exampleInputDirection"
@@ -182,6 +213,7 @@
                 style="font-size: 1.8rem"
                 >В каком направлении хотите развиваться</label
               >
+              {% if owner %}
               <input
                 type="text"
                 class="form-control"
@@ -189,6 +221,9 @@
                 value="{% if ad %}{{ ad.project }}{% endif %}"
                 name="project"
               />
+              {% else %}
+              <p>{% if ad %}{{ ad.project }}{% endif %}</p>
+              {% endif %}
             </div>
 
             <div class="mb-3 w-75 mx-auto">
@@ -198,6 +233,7 @@
                 style="font-size: 1.8rem"
                 >Кем хотите быть</label
               >
+              {% if owner %}
               <input
                 type="text"
                 class="form-control"
@@ -205,6 +241,9 @@
                 name="role"
                 value="{% if ad %}{{ ad.role }}{% endif %}"
               />
+              {% else %}
+              <p>{% if ad %}{{ ad.role }}{% endif %}</p>
+              {% endif %}
             </div>
 
             <div class="mb-3 w-75 mx-auto">
@@ -214,6 +253,7 @@
                 style="font-size: 1.8rem"
                 >Ваши навыки</label
               >
+              {% if owner %}
               <input
                 type="text"
                 class="form-control"
@@ -221,16 +261,22 @@
                 value="{% if ad %}{{ ad.skills }}{% endif %}"
                 name="skills"
               />
+              {% else %}
+              <p>{% if ad %}{{ ad.skills }}{% endif %}</p>
+              {% endif %}
             </div>
 
+            {% if owner %}
             <button
               type="submit"
               class="btn btn-lg bg-main-color text-white d-block tex mx-auto rounded-3 mb-2"
             >
               Сохранить
             </button>
+            {% endif %}
           </form>
 
+          {% if owner %}
           <form action="/api/deleteuserad" method="post">
             <h3 class="text-center m-5 text-main-color" style="font-size: 2rem">Удалить анкету</h3>
             <input
@@ -239,8 +285,10 @@
               value="Удалить"
             />
           </form>
+          {% endif %}
         </div>
 
+        {% if owner %}
         <!-- уведомления -->
         <div class="row justify-content-center">
           <div class="col-12 mb-3">
@@ -295,11 +343,12 @@
             {% endfor %}
           </div>
         </div>
+        {% endif %}
       </div>
     </main>
 
     <footer
-      class="container-fluid bg-main-color d-flex flex-wrap justify-content-between align-items-center py-1 mt-4 sticky-bottom"
+      class="container-fluid bg-main-color d-flex flex-wrap justify-content-between align-items-center py-1 fixed-bottom"
     >
       <p class="col-md-4 mb-0 text-white">&copy; Website production</p>
 
