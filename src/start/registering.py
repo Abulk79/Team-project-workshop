@@ -5,9 +5,10 @@ def home(req):
     context = {}
     if req.user.is_authenticated:
         user = User.objects.get(name=req.user.name)
-        team = TeamMembership.objects.filter(user=req.user).first()
+        teamMembership = TeamMembership.objects.filter(user=req.user).first()
 
-        context['team'] = team
+        if teamMembership:
+            context['team'] = teamMembership.team
         context['user'] = user
     else:
         context['user'] = None
