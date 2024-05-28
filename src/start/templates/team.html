@@ -192,9 +192,9 @@
           </form>
 
           {% if owner %}
-          <form action="/api/deleteteamad" method="post">
+          <form action="/api/leave" method="post">
             <h3 class="text-center m-5 text-main-color" style="font-size: 2rem">
-              Удалить анкету команды
+              Удалить анкету команды и выйти из неё
             </h3>
             <input
               class="btn btn-lg bg-main-color text-white d-block tex mx-auto rounded-3 mb-4"
@@ -205,6 +205,7 @@
           {% endif %}
         </div>
 
+        {% if not owner %}
         <div class="row justify-content-around">
           <div class="col-2">
             <form class="mb-5" action="/api/request/{{ team.owner.name }}" method="POST">
@@ -213,6 +214,7 @@
               </button>
             </form>
           </div>
+
           <div class="col-2">
             <form class="mb-5" action="/api/leave" method="POST">
               <button type="submit" class="btn btn-danger d-block text-white rounded-3">
@@ -220,6 +222,8 @@
               </button>
             </form>
           </div>
+
+          {% endif %}
         </div>
       </div>
     </main>
