@@ -9,6 +9,8 @@ def home(req):
 
         context['team'] = team
         context['user'] = user
+    else:
+        context['user'] = None
 
     return render(req, 'home.html', context)
 
