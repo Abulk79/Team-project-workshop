@@ -28,8 +28,9 @@
                 <a class="nav-link text-white" href="/seekteam/">Команды</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white" href="#">Сокомандники</a>
+                <a class="nav-link text-white" href="/seekers/">Сокомандники</a>
               </li>
+              {% if user %}
               <li class="nav-item dropdown">
                 <a
                   class="nav-link text-white dropdown-toggle"
@@ -42,14 +43,22 @@
                 </a>
                 <ul class="dropdown-menu border-main-color">
                   <li>
-                    <a class="dropdown-item text-main-color" href="/user">Профиль пользователя</a>
+                    <a class="dropdown-item text-main-color" href="/users/{{user}}"
+                      >Профиль пользователя</a
+                    >
                   </li>
+                  {% if team %}
                   <li><hr class="dropdown-divider text-main-color" /></li>
                   <li>
-                    <a class="dropdown-item text-main-color" href="/team">Профиль команды</a>
+                    <a class="dropdown-item text-main-color" href="/teams/{{team}}"
+                      >Профиль команды</a
+                    >
                   </li>
+                  {% endif %}
                 </ul>
+                {% endif %}
               </li>
+              {% if user %} {% else %}
               <li class="nav-item dropdown">
                 <a
                   class="nav-link text-white dropdown-toggle"
@@ -68,6 +77,7 @@
                       >Регистрация</a
                     >
                   </li>
+                  {% endif %}
                 </ul>
               </li>
             </ul>
@@ -81,110 +91,30 @@
         <h1 class="text-main-color">Список сокомандников</h1>
       </div>
       <div class="row justify-content-center align-items-center mb-5">
+        {% for ad in ads %}
         <div class="col-auto mb-4">
           <div class="card" style="width: 18rem">
             <img src="/static/no-image.jpg" class="card-img-top" alt="Аватарка пользователя" />
             <div class="card-body text-main-color border-main-color">
               <h5 class="card-title">
                 <a class="text-decoration-none text-reset" href="/users/{{ ad.user }}"
-                  >{{ ad.user }}Имя пользователя</a
+                  >Имя пользователя: {{ ad.user }}</a
                 >
               </h5>
-              <p class="card-text">Небольшое описание пользователя про себя</p>
             </div>
             <ul class="list-group list-group-flush border-main-color">
-              <li class="list-group-item text-main-color">{{ ad.project }}Направление</li>
-              <li class="list-group-item text-main-color">{{ ad.project }}Роль</li>
-              <li class="list-group-item text-main-color">{{ ad.project }}Скилы</li>
+              <li class="list-group-item text-main-color">Направление: {{ ad.project }}</li>
+              <li class="list-group-item text-main-color">Роль: {{ ad.project }}</li>
+              <li class="list-group-item text-main-color">Скилы: {{ ad.project }}</li>
             </ul>
           </div>
         </div>
-
-        <div class="col-auto mb-4">
-          <div class="card" style="width: 18rem">
-            <img src="/static/no-image.jpg" class="card-img-top" alt="Аватарка пользователя" />
-            <div class="card-body text-main-color border-main-color">
-              <h5 class="card-title">
-                <a class="text-decoration-none text-reset" href="/users/{{ ad.user }}"
-                  >{{ ad.user }}Имя пользователя</a
-                >
-              </h5>
-              <p class="card-text">Небольшое описание пользователя про себя</p>
-            </div>
-            <ul class="list-group list-group-flush border-main-color">
-              <li class="list-group-item text-main-color">{{ ad.project }}Направление</li>
-              <li class="list-group-item text-main-color">{{ ad.project }}Роль</li>
-              <li class="list-group-item text-main-color">{{ ad.project }}Скилы</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="col-auto mb-4">
-          <div class="card" style="width: 18rem">
-            <img src="/static/no-image.jpg" class="card-img-top" alt="Аватарка пользователя" />
-            <div class="card-body text-main-color border-main-color">
-              <h5 class="card-title">
-                <a class="text-decoration-none text-reset" href="/users/{{ ad.user }}"
-                  >{{ ad.user }}Имя пользователя</a
-                >
-              </h5>
-              <p class="card-text">Небольшое описание пользователя про себя</p>
-            </div>
-            <ul class="list-group list-group-flush border-main-color">
-              <li class="list-group-item text-main-color">{{ ad.project }}Направление</li>
-              <li class="list-group-item text-main-color">{{ ad.project }}Роль</li>
-              <li class="list-group-item text-main-color">{{ ad.project }}Скилы</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="col-auto mb-4">
-          <div class="card" style="width: 18rem">
-            <img src="/static/no-image.jpg" class="card-img-top" alt="Аватарка пользователя" />
-            <div class="card-body text-main-color border-main-color">
-              <h5 class="card-title">
-                <a class="text-decoration-none text-reset" href="/users/{{ ad.user }}"
-                  >{{ ad.user }}Имя пользователя</a
-                >
-              </h5>
-              <p class="card-text">Небольшое описание пользователя про себя</p>
-            </div>
-            <ul class="list-group list-group-flush border-main-color">
-              <li class="list-group-item text-main-color">{{ ad.project }}Направление</li>
-              <li class="list-group-item text-main-color">{{ ad.project }}Роль</li>
-              <li class="list-group-item text-main-color">{{ ad.project }}Скилы</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="row justify-content-center align-items-center p-2">
-        <div class="col">
-          <nav>
-            <ul class="pagination justify-content-center">
-              <li class="page-item">
-                <a class="page-link bg-main-color text-white btn-main-color">Предыдущая</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link bg-main-color text-white btn-main-color" href="#">1</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link bg-main-color text-white btn-main-color" href="#">2</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link bg-main-color text-white btn-main-color" href="#">3</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link bg-main-color text-white btn-main-color" href="#">Следующая</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
+        {% endfor %}
       </div>
     </main>
 
     <footer
-      class="container-fluid bg-main-color d-flex flex-wrap justify-content-between align-items-center py-3 mt-4 sticky-bottom"
+      class="container-fluid bg-main-color d-flex flex-wrap justify-content-between align-items-center py-1 mt-4 sticky-bottom"
     >
       <p class="col-md-4 mb-0 text-white">&copy; Website production</p>
 
@@ -200,16 +130,6 @@
         </li>
       </ul>
     </footer>
-
-    {% for ad in ads %}
-    <a href="/users/{{ ad.user }}">{{ ad.user }}</a>
-    Интересуемое направление:
-    <h3>{{ ad.project }}</h3>
-    Интересуемая роль:
-    <h3>{{ ad.role }}</h3>
-    Скиллы:
-    <h3>{{ ad.skills }}</h3>
-    {% endfor %}
 
     <script type="module" src="/static/js/main.js"></script>
   </body>
