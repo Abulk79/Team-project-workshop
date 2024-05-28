@@ -106,7 +106,7 @@
             {% if owner %}
             <button
               type="submit"
-              class="btn btn-lg bg-main-color text-white d-block tex mx-auto rounded-3 mb-4"
+              class="btn btn-lg btn-main-color text-white d-block tex mx-auto rounded-3 mb-4"
             >
               Сохранить
             </button>
@@ -185,44 +185,37 @@
             {% if owner %}
             <input
               type="submit"
-              class="btn btn-lg bg-main-color text-white d-block tex mx-auto rounded-3 mb-4"
-              value="сохранить"
+              class="btn btn-lg btn-main-color text-white d-block tex mx-auto rounded-3 mb-4"
+              value="Cохранить"
             />
             {% endif %}
           </form>
 
           {% if owner %}
-          <form action="/api/leave" method="post">
-            <h3 class="text-center m-5 text-main-color" style="font-size: 2rem">
-              Удалить анкету команды и выйти из неё
-            </h3>
+          <form action="/api/deleteteamad" method="post">
+            <h3 class="text-center m-5 text-main-color" style="font-size: 2rem">Удалить анкету</h3>
             <input
-              class="btn btn-lg bg-main-color text-white d-block tex mx-auto rounded-3 mb-4"
+              class="btn btn-lg btn-main-color text-white d-block mx-auto rounded-3 mb-5"
               type="submit"
               value="Удалить"
             />
           </form>
-          {% endif %}
-        </div>
 
-        {% if not owner %}
-        <div class="row justify-content-around">
-          <div class="col-2">
-            <form class="mb-5" action="/api/request/{{ team.owner.name }}" method="POST">
-              <button type="submit" class="btn btn-success d-block text-white rounded-3">
-                Отправить заявку
-              </button>
-            </form>
-          </div>
-
-          <div class="col-2">
-            <form class="mb-5" action="/api/leave" method="POST">
-              <button type="submit" class="btn btn-danger d-block text-white rounded-3">
-                Выйти из команды
-              </button>
-            </form>
-          </div>
-
+          {% endif %} {% if not owner and not isMember %}
+          <form class="mb-5" action="/api/request/{{ team.owner.name }}" method="POST">
+            <button
+              type="submit"
+              class="btn btn-success d-block text-white rounded-3 d-block mx-auto"
+            >
+              Отправить заявку
+            </button>
+          </form>
+          {% endif %} {% if isMember %}
+          <form class="mb-5" action="/api/leave" method="POST">
+            <button type="submit" class="btn btn-danger d-block text-white rounded-3 mx-auto">
+              Выйти из команды
+            </button>
+          </form>
           {% endif %}
         </div>
       </div>
