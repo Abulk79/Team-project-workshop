@@ -54,7 +54,7 @@ def verify_email_api(req):
 
     reference = """
     Пройдите по ссылке для подтверждения аккаунта:
-    http://localhost:8000/api/registeraccount?name={name}&code={code}
+    https://teampw.ru/api/registeraccount?name={name}&code={code}
     """.format(name=name, code=code)
 
     send_mail(email, reference)
