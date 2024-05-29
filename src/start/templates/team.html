@@ -201,7 +201,7 @@
             />
           </form>
 
-          {% endif %} {% if not owner and not isMember %}
+          {% endif %} {% if canRequest %}
           <form class="mb-5" action="/api/request/{{ team.owner.name }}" method="POST">
             <button
               type="submit"
