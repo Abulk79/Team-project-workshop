@@ -13,6 +13,7 @@ def team(req, name):
     context['isMember'] = req.user.is_authenticated and req.user.name in members
     context['team'] = team
     context['ad'] = ad
+    context['canRequest'] = req.user.is_authenticated and not TeamMembership.objects.filter(user=req.user).exists()
 
     return render(req, 'team.html', context)
 
@@ -42,7 +43,5 @@ def user(req, name):
             membernames = TeamMembership.objects.filter(team=teamguest).values_list('user', flat=True)
             context['canInvite'] = not userMembership
             context['canKick'] = name in membernames and not req.user.name == user.name
-        if teamMembership and teamMembership.team.owner == user:
-            context['canRequest'] = not TeamMembership.objects.filter(user=req.user).exists()
 
     return render(req, 'user.html', context)
