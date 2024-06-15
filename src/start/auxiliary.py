@@ -3,12 +3,13 @@ import ssl
 import smtplib
 from functools import wraps
 from django.http import HttpResponseForbidden, HttpResponseNotFound
+import os
 
 def send_mail(to, body):
     fromMail = 'teamprojectworkshop@mail.ru'
     port = 465
 
-    password = open('/secrets/PASSWORD_EMAIL', 'r')
+    password = os.environ['PASSWORD_EMAIL']
 
     message = EmailMessage()
     message['From'] = fromMail
