@@ -1,11 +1,10 @@
 from pathlib import Path
-import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ['SECRET_KEY']
-
 DEBUG = False
+
+SECRET_KEY = open('/secrets/SECRET_KEY', 'r').read()
 
 ALLOWED_HOSTS = ['*']
 

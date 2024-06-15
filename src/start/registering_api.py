@@ -1,6 +1,12 @@
 from django.shortcuts import redirect
 from .models import *
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseBadRequest, HttpResponseForbidden
+from django.http import (
+        HttpResponse, 
+        HttpResponseNotFound, 
+        HttpResponseBadRequest, 
+        HttpResponseForbidden,
+)
+
 import re
 from .auxiliary import *
 import random
