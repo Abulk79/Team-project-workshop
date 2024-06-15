@@ -5,7 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 DEBUG = False
 
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = open('/secrets/SECRET_KEY', 'r').read()
 
 ALLOWED_HOSTS = ['*']
 
